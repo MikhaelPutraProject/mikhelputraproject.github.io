@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daftar Pendaftar UKM Multimedia</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      background: linear-gradient(to right, #1a1a1a, #16213e);
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      padding-top: 70px;
+    }
+    .container {
+      background-color: rgba(0,0,0,0.85);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px #00f2fe;
+      position: relative;
+      z-index: 1;
+    }
+    h2 {
+      color: #00f2fe;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    table {
+      background-color: #1c1c2e;
+      border: 1px solid #333;
+      width: 100%;
+      /* table-layout: fixed; DIHAPUS - ini sering menyebabkan kompresi */
+    }
+    th, td {
+      padding: 12px 10px; /* Padding ditingkatkan untuk kelegaan */
+      border: 1px solid #444;
+      vertical-align: top; /* Teks dimulai dari atas sel */
+      text-align: left; /* Pastikan rata kiri */
+      white-space: normal; /* Memastikan teks bisa wrap */
+      word-wrap: break-word; /* Untuk kompatibilitas lama */
+      word-break: break-word; /* Memecah kata sangat panjang */
+    }
+    th {
+      background-color: #222;
+      color: #00f2fe;
+    }
+    td {
+      background-color: #2b2b40;
+      color: #eee;
+    }
+    .btn-secondary {
+      background-color: #03e9f4;
+      color: #000;
+      border: none;
+      transition: all 0.3s ease;
+    }
+    .btn-secondary:hover {
+      background-color: #00c9db;
+      transform: scale(1.05);
+    }
+    .form-control, .form-select {
+      background-color: #111;
+      color: #fff;
+      border: 1px solid #555;
+    }
+    .form-control:focus, .form-select:focus {
+      background-color: #111;
+      color: #fff;
+      border-color: #00f2fe;
+      box-shadow: 0 0 10px #00f2fe;
+    }
+
+    /* Gaya untuk memperbesar logo dan teks di navbar */
+    .navbar-brand {
+      font-size: 1.5rem;
+    }
+    .navbar-brand img {
+      width: 40px;
+      height: 32px;
+    }
+    .navbar-nav .nav-link {
+      font-size: 1.1rem;
+    }
+
+    /* Gaya Watermark */
+    .watermark-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0; /* Letakkan di belakang konten utama */
+      pointer-events: none; /* Biarkan interaksi klik/sentuh melewati watermark */
+      user-select: none; /* Mencegah teks watermark bisa dipilih/dicopy */
+      opacity: 0.05; /* Tingkat transparansi watermark, sesuaikan */
+      background-repeat: repeat;
+      background-size: 250px 250px; /* Ukuran pengulangan watermark */
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg width='250' height='250' viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='125' y='125' font-family='Poppins, sans-serif' font-size='18' fill='%23ffffff' text-anchor='middle' transform='rotate(-45 125 125)'%3EMikhael Putra (23.01.53.0001)%3C/text%3E%3C/svg%3E");
+    }
+
+    /* Media Queries untuk penyesuaian mobile yang lebih baik */
+    @media (max-width: 767.98px) {
+      /* Mengurangi ukuran font tabel agar lebih banyak konten yang muat */
+      .table-responsive table {
+        font-size: 0.85em; /* Mengurangi ukuran font seluruh tabel */
+      }
+      /* Menetapkan lebar minimum untuk setiap kolom agar tidak terlalu terkompresi */
+      .table-responsive table th,
+      .table-responsive table td {
+        min-width: 90px; /* Lebar minimum umum untuk kolom di mobile */
+      }
+
+      /* Lebar minimum spesifik untuk kolom dengan konten yang cenderung panjang */
+      .table-responsive table th:nth-child(1), /* Nama Lengkap */
+      .table-responsive table td:nth-child(1) {
+        min-width: 140px;
+      }
+      .table-responsive table th:nth-child(2), /* NIK */
+      .table-responsive table td:nth-child(2) {
+        min-width: 150px;
+      }
+      .table-responsive table th:nth-child(3), /* Tempat Lahir */
+      .table-responsive table td:nth-child(3) {
+        min-width: 120px;
+      }
+      .table-responsive table th:nth-child(4), /* Tanggal Lahir */
+      .table-responsive table td:nth-child(4) {
+        min-width: 120px;
+      }
+      .table-responsive table th:nth-child(6), /* Alamat */
+      .table-responsive table td:nth-child(6) {
+        min-width: 200px; /* Lebih lebar untuk alamat */
+      }
+      .table-responsive table th:nth-child(7), /* Email */
+      .table-responsive table td:nth-child(7) {
+        min-width: 200px; /* Lebih lebar untuk email */
+      }
+      .table-responsive table th:nth-child(8), /* Telepon */
+      .table-responsive table td:nth-child(8) {
+        min-width: 120px;
+      }
+      .table-responsive table th:nth-child(9), /* Program Studi */
+      .table-responsive table td:nth-child(9) {
+        min-width: 150px;
+      }
+      .table-responsive table th:nth-child(10), /* Divisi Diingini */
+      .table-responsive table td:nth-child(10) {
+        min-width: 150px;
+      }
+      .table-responsive table th:nth-child(11), /* Alasan Gabung */
+      .table-responsive table td:nth-child(11) {
+        min-width: 250px; /* Paling lebar untuk alasan gabung */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="watermark-overlay"></div> <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="img/icon.png" alt="Logo UKM Multimedia" class="d-inline-block align-text-top">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="formulir.html">Form</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="admin_login.html">Daftar Pendaftar</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="logoutBtn">Logout Admin</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container col-md-10">
+    <h2>Daftar Pendaftar UKM Multimedia</h2>
+
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <label for="search-input" class="form-label">Cari Data:</label>
+        <input type="text" id="search-input" class="form-control" placeholder="Cari Nama, NIK, Email, dll." />
+      </div>
+      <div class="col-md-3">
+        <label for="filter-prodi" class="form-label">Filter Program Studi:</label>
+        <select id="filter-prodi" class="form-select">
+          <option value="">Semua Program Studi</option>
+          <option value="Sistem Informasi">Sistem Informasi</option>
+          <option value="Teknik Informatika">Teknik Informatika</option>
+          <option value="Manajemen">Manajemen</option>
+          <option value="Akuntansi">Akuntansi</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="filter-jk" class="form-label">Filter Jenis Kelamin:</label>
+        <select id="filter-jk" class="form-select">
+          <option value="">Semua Jenis Kelamin</option>
+          <option value="Laki-laki">Laki-laki</option>
+          <option value="Perempuan">Perempuan</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-bordered text-white">
+        <thead>
+          <tr>
+            <th>Nama Lengkap</th>
+            <th>NIK</th>
+            <th>Tempat Lahir</th>
+            <th>Tanggal Lahir</th>
+            <th>Jenis Kelamin</th>
+            <th>Alamat</th>
+            <th>Email</th>
+            <th>Telepon</th>
+            <th>Program Studi</th>
+            <th>Divisi Diingini</th>
+            <th>Alasan Gabung</th>
+          </tr>
+        </thead>
+        <tbody id="registration-table-body">
+          </tbody>
+      </table>
+    </div>
+    <div class="text-center">
+      <button type="button" class="btn btn-danger mt-4" id="clearDataBtn">Hapus Semua Data Pendaftar</button>
+      <a href="formulir.html" class="btn btn-secondary mt-4">Kembali ke Form Pendaftaran</a>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script>
+    // Periksa status login admin
+    if (sessionStorage.getItem('isAdminLoggedIn') !== 'true') {
+      alert('Anda tidak memiliki akses ke halaman ini. Silakan login sebagai admin.');
+      window.location.href = 'admin_login.html'; // Redirect jika belum login
+    }
+
+    let registrationData = []; // This array will now be populated from localStorage
+
+    // Fungsi untuk memuat data dari localStorage atau dummy data
+    function loadRegistrationData() {
+        const storedData = localStorage.getItem('ukmRegistrations');
+        if (storedData) {
+            registrationData = JSON.parse(storedData);
+        } else {
+            // Dummy data jika belum ada data di localStorage
+            registrationData = [
+                {
+                    nama: "Putri Anggraini",
+                    nik: "3374012003010001",
+                    tempat_lahir: "Semarang",
+                    tanggal_lahir: "2003-01-20",
+                    jenis_kelamin: "Perempuan",
+                    alamat: "Jl. Sudirman No. 1, Semarang",
+                    email: "putri.a@mhs.unisbank.ac.id",
+                    telepon: "081211112222",
+                    program_studi: "Sistem Informasi",
+                    divisi_diingini: "Divisi Pengembangan",
+                    alasan_gabung: "Ingin berkontribusi dalam pengembangan ide-ide kreatif dan penulisan skenario."
+                },
+                {
+                    nama: "Rizky Pratama",
+                    nik: "3374022002080005",
+                    tempat_lahir: "Semarang",
+                    tanggal_lahir: "2002-08-10",
+                    jenis_kelamin: "Laki-laki",
+                    alamat: "Jl. Pemuda No. 15, Semarang",
+                    email: "rizky.p@mhs.unisbank.ac.id",
+                    telepon: "085622223333",
+                    program_studi: "Teknik Informatika",
+                    divisi_diingini: "Divisi Produksi",
+                    alasan_gabung: "Tertarik pada proses produksi video dan fotografi, ingin belajar lebih dalam."
+                },
+                {
+                    nama: "Aisyah Nurjannah",
+                    nik: "3374032004050010",
+                    tempat_lahir: "Semarang",
+                    tanggal_lahir: "2004-05-25",
+                    jenis_kelamin: "Perempuan",
+                    alamat: "Jl. Kyai Saleh No. 22, Semarang",
+                    email: "aisyah.n@mhs.unisbank.ac.id",
+                    telepon: "087833334444",
+                    program_studi: "Akuntansi",
+                    divisi_diingini: "Divisi Pengembangan",
+                    alasan_gabung: "Ingin mengasah kemampuan menulis dan mencari ide-ide inovatif untuk konten."
+                },
+                {
+                    nama: "Fajar Nugraha",
+                    nik: "3374042001110012",
+                    tempat_lahir: "Semarang",
+                    tanggal_lahir: "2001-11-03",
+                    jenis_kelamin: "Laki-laki",
+                    alamat: "Jl. Gajah Mada No. 5, Semarang",
+                    email: "fajar.n@mhs.unisbank.ac.id",
+                    telepon: "089644445555",
+                    program_studi: "Manajemen",
+                    divisi_diingini: "Divisi Produksi",
+                    alasan_gabung: "Memiliki passion di bidang videografi dan ingin belajar mengoperasikan kamera profesional."
+                },
+                {
+                    nama: "Dewi Safitri",
+                    nik: "3374052003020015",
+                    tempat_lahir: "Semarang",
+                    tanggal_lahir: "2003-02-14",
+                    jenis_kelamin: "Perempuan",
+                    alamat: "Jl. Pemuda No. 88, Semarang",
+                    email: "dewi.s@mhs.unisbank.ac.id",
+                    telepon: "081355556666",
+                    program_studi: "Sistem Informasi",
+                    divisi_diingini: "Divisi Animasi",
+                    alasan_gabung: "Tertarik pada seni animasi digital dan ingin membuat karakter sendiri."
+                },
+                {
+                    nama: "Kevin Wijaya",
+                    nik: "3374062002070018",
+                    tempat_lahir: "Semarang",
+                    tanggal_lahir: "2002-07-07",
+                    jenis_kelamin: "Laki-laki",
+                    alamat: "Jl. Dr. Wahidin No. 20, Semarang",
+                    email: "kevin.w@mhs.unisbank.ac.id",
+                    telepon: "085766667777",
+                    program_studi: "Teknik Informatika",
+                    divisi_diingini: "Divisi Pengembangan",
+                    alasan_gabung: "Suka berdiskusi ide dan memiliki pengalaman menulis artikel ilmiah, ingin menerapkannya di konten UKM."
+                },
+                {
+                    nama: "Vina Maharani",
+                    nik: "3374072004090020",
+                    tempat_lahir: "Semarang",
+                    tanggal_lahir: "2004-09-01",
+                    jenis_kelamin: "Perempuan",
+                    alamat: "Jl. Sultan Agung No. 30, Semarang",
+                    email: "vina.m@mhs.unisbank.ac.id",
+                    telepon: "089577778888",
+                    program_studi: "Manajemen",
+                    divisi_diingini: "Divisi Produksi",
+                    alasan_gabung: "Ingin belajar editing video dan efek visual untuk konten media sosial."
+                },
+                {
+                    nama: "Arif Hidayat",
+                    nik: "3374082001040023",
+                    tempat_lahir: "Semarang",
+                    tanggal_lahir: "2001-04-18",
+                    jenis_kelamin: "Laki-laki",
+                    alamat: "Jl. MT. Haryono No. 50, Semarang",
+                    email: "arif.h@mhs.unisbank.ac.id",
+                    telepon: "081188889999",
+                    program_studi: "Akuntansi",
+                    divisi_diingini: "Divisi Animasi",
+                    alasan_gabung: "Sangat tertarik pada motion graphics dan ingin belajar software animasi."
+                },
+                {
+                    nama: "Larasati Putri",
+                    nik: "3374092003060025",
+                    tempat_lahir: "Semarang",
+                    tanggal_lahir: "2003-06-09",
+                    jenis_kelamin: "Perempuan",
+                    alamat: "Jl. Veteran No. 7, Semarang",
+                    email: "larasati.p@mhs.unisbank.ac.id",
+                    telepon: "085299990000",
+                    program_studi: "Sistem Informasi",
+                    divisi_diingini: "Divisi Produksi",
+                    alasan_gabung: "Hobi membuat vlog dan ingin meningkatkan kualitas produksi kontennya."
+                },
+                {
+                    nama: "Bima Santoso",
+                    nik: "3374102002120028",
+                    tempat_lahir: "Semarang",
+                    tanggal_lahir: "2002-12-05",
+                    jenis_kelamin: "Laki-laki",
+                    alamat: "Jl. Pandanaran No. 100, Semarang",
+                    email: "bima.s@mhs.unisbank.ac.id",
+                    telepon: "087700001111",
+                    program_studi: "Teknik Informatika",
+                    divisi_diingini: "Divisi Pengembangan",
+                    alasan_gabung: "Ingin berkontribusi dalam brainstorming ide-ide segar dan penulisan naskah."
+                },
+                {
+                    nama: "Citra Kirana",
+                    nik: "3374112004010030",
+                    tempat_lahir: "Semarang",
+                    tanggal_lahir: "2004-01-11",
+                    jenis_kelamin: "Perempuan",
+                    alamat: "Jl. Pahlawan No. 10, Semarang",
+                    email: "citra.k@mhs.unisbank.ac.id",
+                    telepon: "089611112222",
+                    program_studi: "Manajemen",
+                    divisi_diingini: "Divisi Animasi",
+                    alasan_gabung: "Suka menggambar dan ingin belajar membuat ilustrasi bergerak."
+                },
+                {
+                    nama: "Dani Saputra",
+                    nik: "3374122001030033",
+                    tempat_lahir: "Semarang",
+                    tanggal_lahir: "2001-03-29",
+                    jenis_kelamin: "Laki-laki",
+                    alamat: "Jl. Mgr. Soegijapranata No. 5, Semarang",
+                    email: "dani.s@mhs.unisbank.ac.id",
+                    telepon: "081222223333",
+                    program_studi: "Akuntansi",
+                    divisi_diingini: "Divisi Produksi",
+                    alasan_gabung: "Tertarik pada sinematografi dan ingin belajar teknik pengambilan gambar."
+                },
+                {
+                    nama: "Eka Pramesti",
+                    nik: "3374132003080035",
+                    tempat_lahir: "Semarang",
+                    tanggal_lahir: "2003-08-08",
+                    jenis_kelamin: "Perempuan",
+                    alamat: "Jl. Imam Bonjol No. 40, Semarang",
+                    email: "eka.p@mhs.unisbank.ac.id",
+                    telepon: "085633334444",
+                    program_studi: "Sistem Informasi",
+                    divisi_diingini: "Divisi Pengembangan",
+                    alasan_gabung: "Punya banyak ide cerita dan ingin belajar mengembangkan ide jadi konsep konten."
+                },
+                {
+                    nama: "Gilang Ramadhan",
+                    nik: "3374142002040038",
+                    tempat_lahir: "Semarang",
+                    tanggal_lahir: "2002-04-12",
+                    jenis_kelamin: "Laki-laki",
+                    alamat: "Jl. Dr. Sutomo No. 5, Semarang",
+                    email: "gilang.r@mhs.unisbank.ac.id",
+                    telepon: "087844445555",
+                    program_studi: "Teknik Informatika",
+                    divisi_diingini: "Divisi Animasi",
+                    alasan_gabung: "Ingin menggabungkan kemampuan coding dengan animasi untuk proyek-proyek menarik."
+                },
+                {
+                    nama: "Hana Lestari",
+                    nik: "3374152004100040",
+                    tempat_lahir: "Semarang",
+                    tanggal_lahir: "2004-10-15",
+                    jenis_kelamin: "Perempuan",
+                    alamat: "Jl. Veteran No. 10, Semarang",
+                    email: "hana.l@mhs.unisbank.ac.id",
+                    telepon: "089555556666",
+                    program_studi: "Akuntansi",
+                    divisi_diingini: "Divisi Produksi",
+                    alasan_gabung: "Tertarik pada fotografi produk dan ingin belajar membuat konten visual yang menarik."
+                },
+                {
+                    nama: "Iqbal Fadillah",
+                    nik: "3374162001070043",
+                    tempat_lahir: "Semarang",
+                    tanggal_lahir: "2001-07-01",
+                    jenis_kelamin: "Laki-laki",
+                    alamat: "Jl. Menteri Supeno No. 1, Semarang",
+                    email: "iqbal.f@mhs.unisbank.ac.id",
+                    telepon: "081366667777",
+                    program_studi: "Manajemen",
+                    divisi_diingini: "Divisi Pengembangan",
+                    alasan_gabung: "Suka riset tren dan ingin mengembangkan ide-ide konten yang relevan dengan audiens."
+                },
+                {
+                    nama: "Jihan Permata",
+                    nik: "3374172003030045",
+                    tempat_lahir: "Semarang",
+                    tanggal_lahir: "2003-03-20",
+                    jenis_kelamin: "Perempuan",
+                    alamat: "Jl. Pemuda No. 5, Semarang",
+                    email: "jihan.p@mhs.unisbank.ac.id",
+                    telepon: "085777778888",
+                    program_studi: "Sistem Informasi",
+                    divisi_diingini: "Divisi Animasi",
+                    alasan_gabung: "Ingin belajar membuat animasi stop motion dan 2D."
+                },
+                {
+                    nama: "Kresna Dharma",
+                    nik: "3374182002090048",
+                    tempat_lahir: "Semarang",
+                    tanggal_lahir: "2002-09-14",
+                    jenis_kelamin: "Laki-laki",
+                    alamat: "Jl. Imam Bonjol No. 1, Semarang",
+                    email: "kresna.d@mhs.unisbank.ac.id",
+                    telepon: "089688889999",
+                    program_studi: "Teknik Informatika",
+                    divisi_diingini: "Divisi Produksi",
+                    alasan_gabung: "Fokus pada audio engineering dan ingin berkontribusi dalam kualitas suara konten."
+                },
+                {
+                    nama: "Luna Ramadhani",
+                    nik: "3374192004060050",
+                    tempat_lahir: "Semarang",
+                    tanggal_lahir: "2004-06-02",
+                    jenis_kelamin: "Perempuan",
+                    alamat: "Jl. Depok No. 25, Semarang",
+                    email: "luna.r@mhs.unisbank.ac.id",
+                    telepon: "081299990000",
+                    program_studi: "Manajemen",
+                    divisi_diingini: "Divisi Pengembangan",
+                    alasan_gabung: "Gemar menulis cerita pendek dan ingin menerapkannya dalam naskah video."
+                },
+                {
+                    nama: "Naufal Zuhdi",
+                    nik: "3374202001020053",
+                    tempat_lahir: "Semarang",
+                    tanggal_lahir: "2001-02-09",
+                    jenis_kelamin: "Laki-laki",
+                    alamat: "Jl. Veteran No. 12, Semarang",
+                    email: "naufal.z@mhs.unisbank.ac.id",
+                    telepon: "085600001111",
+                    program_studi: "Akuntansi",
+                    divisi_diingini: "Divisi Animasi",
+                    alasan_gabung: "Ingin belajar membuat visualisasi data interaktif menggunakan animasi."
+                }
+            ];
+            localStorage.setItem('ukmRegistrations', JSON.stringify(registrationData));
+        }
+    }
+
+    // Function to render the table based on current registrationData
+    function renderTable(dataToRender) {
+      const $tableBody = $("#registration-table-body");
+      $tableBody.empty(); // Clear existing rows
+
+      if (dataToRender.length === 0) {
+        $tableBody.append('<tr><td colspan="11" class="text-center">Tidak ada data pendaftar yang ditemukan.</td></tr>');
+        return;
+      }
+
+      $.each(dataToRender, function(index, registration) {
+        const row = `
+          <tr>
+            <td>${registration.nama}</td>
+            <td>${registration.nik}</td>
+            <td>${registration.tempat_lahir}</td>
+            <td>${registration.tanggal_lahir}</td>
+            <td>${registration.jenis_kelamin}</td>
+            <td>${registration.alamat}</td>
+            <td>${registration.email}</td>
+            <td>${registration.telepon}</td>
+            <td>${registration.program_studi}</td>
+            <td>${registration.divisi_diingini || '-'}</td>
+            <td>${registration.alasan_gabung || '-'}</td>
+          </tr>
+        `;
+        $tableBody.append(row);
+      });
+    }
+
+    // Function to apply filters and search
+    function applyFiltersAndSearch() {
+      const searchTerm = $("#search-input").val().toLowerCase();
+      const filterProdi = $("#filter-prodi").val();
+      const filterJK = $("#filter-jk").val();
+
+      let filteredData = registrationData.filter(function(registration) {
+        const matchesSearch =
+          (registration.nama && registration.nama.toLowerCase().includes(searchTerm)) ||
+          (registration.nik && registration.nik.toLowerCase().includes(searchTerm)) ||
+          (registration.email && registration.email.toLowerCase().includes(searchTerm)) ||
+          (registration.telepon && registration.telepon.toLowerCase().includes(searchTerm)) ||
+          (registration.alamat && registration.alamat.toLowerCase().includes(searchTerm)) ||
+          (registration.divisi_diingini && registration.divisi_diingini.toLowerCase().includes(searchTerm)) ||
+          (registration.alasan_gabung && registration.alasan_gabung.toLowerCase().includes(searchTerm));
+
+        const matchesProdi = filterProdi === "" || registration.program_studi === filterProdi;
+        const matchesJK = filterJK === "" || registration.jenis_kelamin === filterJK;
+
+        return matchesSearch && matchesProdi && matchesJK;
+      });
+
+      renderTable(filteredData);
+    }
+
+    $(document).ready(function() {
+      loadRegistrationData(); // Load data from localStorage on page load
+      renderTable(registrationData); // Render initial table
+
+      // Attach event listeners for search and filter changes
+      $("#search-input").on("keyup", applyFiltersAndSearch);
+      $("#filter-prodi").on("change", applyFiltersAndSearch);
+      $("#filter-jk").on("change", applyFiltersAndSearch);
+
+      // Event listener untuk tombol Logout
+      $("#logoutBtn").on("click", function(e) {
+        e.preventDefault();
+        sessionStorage.removeItem('isAdminLoggedIn'); // Hapus status login
+        alert('Anda telah logout sebagai admin.');
+        window.location.href = 'admin_login.html'; // Redirect ke halaman login
+      });
+
+      // Event listener untuk tombol Hapus Semua Data
+      $("#clearDataBtn").on("click", function() {
+        if (confirm("Apakah Anda yakin ingin menghapus semua data pendaftar? Tindakan ini tidak dapat dibatalkan!")) {
+          localStorage.removeItem('ukmRegistrations'); // Hapus data dari localStorage
+          registrationData = []; // Kosongkan array data di memori
+          renderTable(registrationData); // Render ulang tabel kosong
+          alert('Semua data pendaftar telah dihapus.');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
